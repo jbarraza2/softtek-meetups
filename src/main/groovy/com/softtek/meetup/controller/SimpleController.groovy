@@ -1,4 +1,4 @@
-package com.soffttek.meetup.controller
+package com.softtek.meetup.controller
 
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
