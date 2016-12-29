@@ -1,12 +1,12 @@
-package com.example
+package com.softtek.meetup
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-class DemoApplication {
+class SofttekMeetupApplication {
 
 	static void main(String[] args) {
-		SpringApplication.run DemoApplication, args
+		SpringApplication.run SofttekMeetupApplication, args
 	}
 }
