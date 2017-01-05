@@ -19,6 +19,9 @@ bower {
   'bootstrap'('3.3.7'){
     source '**'
   }
+  'assan-theme'('https://github.com/softtek-gdl/assan-template.git'){
+    source '**'
+  }
 }
 
 apply plugin: 'groovy'
