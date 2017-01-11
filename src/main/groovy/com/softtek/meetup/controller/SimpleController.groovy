@@ -25,7 +25,6 @@ class SimpleController {
   @RequestMapping("/")
   String index(){
   	log.info "Message is: ${message}"
-    service.callService()
     'index'
   }
 	
