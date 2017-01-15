@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller
 import com.softtek.meetup.service.SofttekMeetupService
 
 @Controller
-class SimpleController {
+class SofttekMeetupController {
 	Logger log = LoggerFactory.getLogger(this.class)
 
   @Autowired
@@ -25,7 +25,7 @@ class SimpleController {
   @RequestMapping("/")
   String index(){
   	log.info "Message is: ${message}"
-    'index'
+    'home/index'
   }
-	
+
 }
