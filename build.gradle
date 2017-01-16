@@ -12,6 +12,7 @@ buildscript {
 
 plugins {
   id 'com.craigburke.bower-installer' version '2.5.1'
+  id 'org.springframework.boot' version '1.4.3.RELEASE'
 }
 
 bower {
@@ -38,8 +39,12 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+    dev
+}
 
 dependencies {
+	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.codehaus.groovy:groovy')
 	compile 'org.springframework.boot:spring-boot-starter-aop'
@@ -48,3 +53,8 @@ dependencies {
 }
 
 bootRun.dependsOn rootProject.tasks['bowerInstall']
+
+bootRun {
+    // Use Spring Boot DevTool only when we run Gradle bootRun task
+    classpath = sourceSets.main.runtimeClasspath + configurations.dev
+}

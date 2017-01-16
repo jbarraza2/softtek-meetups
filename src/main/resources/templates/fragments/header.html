@@ -1,3 +1,7 @@
 <header layout:fragment="header">
-  <p th:text="'Hello common header fragment (' + ${name} + ')!'">header fragment</p>
+
+	<topBar th:replace="fragments/topBar :: topBar">
+	</topBar>
+	<menu th:replace="fragments/menu :: menu">
+	</menu>
 </header>
