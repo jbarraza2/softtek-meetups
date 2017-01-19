@@ -139,30 +139,36 @@
     </form>
   </div><!--login tab end-->
   <div role="tabpanel" class="tab-pane" id="profile">
-    <form>
+  <form id="register" action="#" th:action="@{/login/save}" th:object="${userCommand}" method="post">
      <div class="form-group">
-      <label for="exampleInputname">Name(s)</label>
-      <input type="text" class="form-control" id="exampleInputName" placeholder="Enter name(s)"/>
+     <label th:for="name" th:text="#{user.name}"/>
+      <input type="text" name='name' class="form-control" placeholder="Enter name(s)" id='name'/>
+      <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
     </div>
     <div class="form-group">
-      <label for="exampleInputname">Last Name</label>
-      <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter last name"/>
+      <label th:for="lastname" th:text="#{user.lastname}"/>
+      <input type="text" name='lastname' class="form-control" placeholder="Enter last name" id='lastname'/>
+      <label th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></label>
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail11">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail11" placeholder="Enter email"/>
+      <label th:for="email" th:text="#{user.email}"/>
+      <input type="text" name='email' class="form-control" placeholder="Enter email" id='email'/>
+      <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
     </div>
     <div class="form-group">
-      <label for="exampleInputname">Username</label>
-      <input type="text" class="form-control" id="exampleInputUsername" placeholder="Enter username"/>
+      <label th:for="username" th:text="#{login.username}"/>
+      <input type="text" name='username' class="form-control" placeholder="Enter username" id='username'/>
+      <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword11">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword11" placeholder="Password"/>
+      <label th:for="password" th:text="#{login.password}"/>
+      <input type="password" name='password' class="form-control" placeholder="Password" id='password'/>
+      <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword111">Re-Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword111" placeholder="Password"/>
+      <label th:for="passwordConfirmation" th:text="#{login.passwordConfirmation}"/>
+      <input type="password" name='passwordConfirmation' class="form-control" placeholder="Password" id='passwordConfirmation'/>
+      <label th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"></label>
     </div>
     <div class="pull-right">
       <button type="submit" class="btn btn-theme-dark btn-lg">Register</button>
