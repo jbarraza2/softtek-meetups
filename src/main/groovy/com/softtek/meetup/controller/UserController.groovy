@@ -12,8 +12,8 @@ import org.springframework.validation.BindingResult
 import org.springframework.stereotype.Controller
 import javax.validation.Valid
 
-import com.jos.dem.vetlog.command.UserCommand
-import com.jos.dem.vetlog.validator.UserValidator
+import com.softtek.meetup.command.UserCommand
+import com.softtek.meetup.validator.UserValidator
 
 @Controller
 @RequestMapping("/users")
