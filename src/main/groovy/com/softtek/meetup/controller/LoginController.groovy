@@ -25,7 +25,7 @@ class LoginController {
     log.info "Calling login"
     ModelAndView modelAndView = new ModelAndView('login/login')
     if(error.isPresent()){
-      modelAndView.addObject('error', localeService.getMessage('login.invalid.credentials'));
+      modelAndView.addObject('error', localeService.getMessage('login.error'));
     }
     modelAndView
   }
