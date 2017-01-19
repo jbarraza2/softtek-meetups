@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller
 import com.softtek.meetup.service.SofttekMeetupService
 
 @Controller
-class SofttekMeetupController {
+class HomeController {
 	Logger log = LoggerFactory.getLogger(this.class)
 
   @Autowired
