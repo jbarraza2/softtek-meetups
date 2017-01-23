@@ -3,11 +3,11 @@ package com.softtek.meetup.service.impl
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
 
-import  com.jos.dem.vetlog.model.User
-import  com.jos.dem.vetlog.command.Command
-import  com.jos.dem.vetlog.binder.UserBinder
-import  com.jos.dem.vetlog.service.UserService
-import  com.jos.dem.vetlog.repository.UserRepository
+import  com.softtek.meetup.model.User
+import  com.softtek.meetup.command.Command
+import  com.softtek.meetup.binder.UserBinder
+import  com.softtek.meetup.service.UserService
+import  com.softtek.meetup.repository.UserRepository
 
 @Service
 class UserServiceImpl implements UserService {

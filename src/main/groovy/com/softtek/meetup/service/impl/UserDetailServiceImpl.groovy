@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 
-import  com.jos.dem.vetlog.model.User
-import  com.jos.dem.vetlog.model.Role
-import  com.jos.dem.vetlog.service.UserService
+import  com.softtek.meetup.model.User
+import  com.softtek.meetup.model.Role
+import  com.softtek.meetup.service.UserService
 
 @Service
 class UserDetailServiceImpl implements UserDetailsService {
