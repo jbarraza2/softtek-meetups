@@ -45,7 +45,7 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-aop'
 	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
   compile 'org.springframework.boot:spring-boot-starter-security'
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 bootRun.dependsOn rootProject.tasks['bowerInstall']
