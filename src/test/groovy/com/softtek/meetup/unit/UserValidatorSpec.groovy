@@ -11,9 +11,9 @@ import com.softtek.meetup.validator.UserValidator
 
 class UserValidatorSpec extends Specification {
 
-	UserValidator userValidator = new UserValidator()
+  UserValidator userValidator = new UserValidator()
 
-	Errors errors = Mock(Errors)
+  Errors errors = Mock(Errors)
   LocaleService localeService = Mock(LocaleService)
 
   void setup(){
