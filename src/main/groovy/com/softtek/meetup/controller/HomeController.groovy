@@ -11,7 +11,7 @@ class HomeController {
 
   @RequestMapping("/")
   String index(){
-  	log.info "Message is: ${message}"
+  	log.info "Calling index"
     'home/index'
   }
 
