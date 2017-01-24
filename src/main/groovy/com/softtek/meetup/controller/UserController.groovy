@@ -14,6 +14,7 @@ import javax.validation.Valid
 
 import com.softtek.meetup.command.UserCommand
 import com.softtek.meetup.validator.UserValidator
+import com.softtek.meetup.service.UserService
 
 @Controller
 @RequestMapping("/user")
@@ -21,25 +22,28 @@ class UserController {
 
   @Autowired
   UserValidator userValidator
+  @Autowired
+  UserService userService
 
-	@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		binder.addValidators(userValidator)
-	}
+  @InitBinder
+  private void initBinder(WebDataBinder binder) {
+    binder.addValidators(userValidator)
+  }
 
-	@RequestMapping(method = GET, value = "/create")
-	ModelAndView create(){
-		def modelAndView = new ModelAndView('user/create')
-		def userCommand = new UserCommand()
-		modelAndView.addObject('userCommand', userCommand)
-		modelAndView
-	}
+  @RequestMapping(method = GET, value = "/create")
+  ModelAndView create(){
+    def modelAndView = new ModelAndView('user/create')
+    def userCommand = new UserCommand()
+    modelAndView.addObject('userCommand', userCommand)
+    modelAndView
+  }
 
-	@RequestMapping(method = POST, value = "/save")
-	String save(@Valid UserCommand command, BindingResult bindingResult) {
+  @RequestMapping(method = POST, value = "/save")
+  String save(@Valid UserCommand command, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       return 'user/create'
     }
+    userService.save(command)
     'redirect:/'
   }
 
