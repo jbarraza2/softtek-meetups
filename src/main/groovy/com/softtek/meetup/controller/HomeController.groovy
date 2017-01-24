@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory
 
 @Controller
 class HomeController {
-	Logger log = LoggerFactory.getLogger(this.class)
+  Logger log = LoggerFactory.getLogger(this.class)
 
   @RequestMapping("/")
   String index(){
