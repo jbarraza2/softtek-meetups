@@ -97,4 +97,17 @@ class UserValidatorSpec extends Specification {
     1 * errors.reject('username', 'This username is already taken')
   }
 
+  void "should validate duplicate email"(){
+    given:"A user command"
+      Command command = new UserCommand(username:'josdem',password:'password',passwordConfirmation:'password',email:'josdem@email.com',name:'name',lastname:'lastname')
+    and:"A user"
+      User user = new User()   
+    when:
+      userService.getUserByEmail('josdem@email.com') >> user
+      localeService.getMessage('user.validation.duplicated.email') >> 'This email is already taken'
+      userValidator.validate(command, errors)
+    then:
+    1 * errors.reject('email', 'This email is already taken')
+  }
+
 }
