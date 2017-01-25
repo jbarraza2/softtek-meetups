@@ -5,8 +5,10 @@ import spock.lang.Specification
 import org.springframework.validation.Errors
 
 import com.softtek.meetup.service.LocaleService
+import com.softtek.meetup.service.UserService
 import com.softtek.meetup.command.Command
 import com.softtek.meetup.command.UserCommand
+import com.softtek.meetup.model.User
 import com.softtek.meetup.validator.UserValidator
 
 class UserValidatorSpec extends Specification {
@@ -15,9 +17,11 @@ class UserValidatorSpec extends Specification {
 
   Errors errors = Mock(Errors)
   LocaleService localeService = Mock(LocaleService)
+  UserService userService = Mock(UserService)
 
   void setup(){
     userValidator.localeService = localeService
+    userValidator.userService = userService
   }
 
   void "should not create an user since theirs passwords are not equals"(){
@@ -78,6 +82,19 @@ class UserValidatorSpec extends Specification {
     userValidator.validate(command, errors)
     then:"We expect everything is going to be all right"
     0 * errors.reject('password', _ as String)
+  }
+
+  void "should validate duplicate usernames"(){
+    given:"A user command"
+      Command command = new UserCommand(username:'josdem',password:'password',passwordConfirmation:'password',email:'josdem@email.com',name:'name',lastname:'lastname')
+    and:"A user"
+      User user = new User()   
+    when:
+      userService.getUserByUsername('josdem') >> user
+      localeService.getMessage('user.validation.duplicated.username') >> 'This username is already taken'
+      userValidator.validate(command, errors)
+    then:
+    1 * errors.reject('username', 'This username is already taken')
   }
 
 }
