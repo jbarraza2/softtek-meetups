@@ -90,7 +90,7 @@ class UserValidatorSpec extends Specification {
     and:"A user"
       User user = new User()   
     when:
-      userService.getUserByUsername('josdem') >> user
+      userService.getByUsername('josdem') >> user
       localeService.getMessage('user.validation.duplicated.username') >> 'This username is already taken'
       userValidator.validate(command, errors)
     then:
@@ -103,7 +103,7 @@ class UserValidatorSpec extends Specification {
     and:"A user"
       User user = new User()   
     when:
-      userService.getUserByEmail('josdem@email.com') >> user
+      userService.getByEmail('josdem@email.com') >> user
       localeService.getMessage('user.validation.duplicated.email') >> 'This email is already taken'
       userValidator.validate(command, errors)
     then:

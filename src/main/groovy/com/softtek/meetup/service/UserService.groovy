@@ -5,8 +5,8 @@ import  com.softtek.meetup.command.Command
 
 interface UserService{
 
-  User getUserByUsername(String username)
-  User getUserByEmail(String email)
+  User getByUsername(String username)
+  User getByEmail(String email)
   void save(Command command)
 
 }
