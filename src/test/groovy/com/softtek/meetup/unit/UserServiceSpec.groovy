@@ -2,18 +2,25 @@ package com.softtek.meetup.unit
 
 import spock.lang.Specification;
 
+import  com.softtek.meetup.binder.UserBinder
 import  com.softtek.meetup.service.UserService
 import  com.softtek.meetup.service.impl.UserServiceImpl
 import  com.softtek.meetup.repository.UserRepository
+import  com.softtek.meetup.command.Command
+import  com.softtek.meetup.command.UserCommand
+import  com.softtek.meetup.model.User
+import  com.softtek.meetup.model.Role
 
 class UserServiceSpec extends Specification {
 
 	UserService userService = new UserServiceImpl();
 
   UserRepository userRepository = Mock(UserRepository)
+  UserBinder userBinder = new UserBinder()
 
   def setup(){
     userService.userRepository = userRepository
+    userService.userBinder = userBinder
   }
 
 	void "should find a user by username"(){
@@ -32,5 +39,20 @@ class UserServiceSpec extends Specification {
       userService.getByEmail(email)
     then:
     1 * userRepository.findByEmail(email)
+  }
+
+  void "should save an user"(){
+    given:"A command"
+      Command command = new UserCommand(username:'josdem',password:'password',passwordConfirmation:'password',email:'josdem@email.com',name:'name',lastname:'lastname')
+    when:"We save an user"
+      User user = userService.save(command)
+    then:"We expect user is saved"
+    1 * userRepository.save(_ as User)
+    user.username == 'josdem'
+    user.firstName == 'name'
+    user.lastName == 'lastname'
+    user.email == 'josdem@email.com'
+    user.role == Role.USER
+    user.password.size() == 60
   }
 }
