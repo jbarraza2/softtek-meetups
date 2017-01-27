@@ -25,4 +25,12 @@ class UserServiceSpec extends Specification {
     1 * userRepository.findByUsername(username)
   }
 	
+  void "should find a user by email"(){
+    given:"An email"
+      String email = 'josdem@email.com'
+    when:
+      userService.getByEmail(email)
+    then:
+    1 * userRepository.findByEmail(email)
+  }
 }
