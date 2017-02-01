@@ -1,11 +1,19 @@
 package com.softtek.meetup.service.impl
 
+import org.springframework.beans.factory.annotation.Autowired
+
 import com.softtek.meetup.service.RecoveryService
+import com.softtek.meetup.repository.RegistrationCodeRepository
+import com.softtek.meetup.model.RegistrationCode
 
 class RecoveryServiceImpl implements RecoveryService {
 
-	void saveRegistrationCode(String email){
+  @Autowired
+  RegistrationCodeRepository repository
 
+	void saveRegistrationCode(String email){
+    RegistrationCode registrationCode = new RegistrationCode(email:email)  
+    repository.save(registrationCode)
 	}
 	
 }
