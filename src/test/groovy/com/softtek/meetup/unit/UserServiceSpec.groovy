@@ -5,6 +5,7 @@ import spock.lang.Specification;
 import  com.softtek.meetup.binder.UserBinder
 import  com.softtek.meetup.service.UserService
 import  com.softtek.meetup.service.impl.UserServiceImpl
+import  com.softtek.meetup.service.RecoveryService
 import  com.softtek.meetup.repository.UserRepository
 import  com.softtek.meetup.command.Command
 import  com.softtek.meetup.command.UserCommand
@@ -17,10 +18,12 @@ class UserServiceSpec extends Specification {
 
   UserRepository userRepository = Mock(UserRepository)
   UserBinder userBinder = new UserBinder()
+  RecoveryService recoveryService = Mock(RecoveryService)
 
   def setup(){
     userService.userRepository = userRepository
     userService.userBinder = userBinder
+    userService.recoveryService = recoveryService
   }
 
 	void "should find a user by username"(){
@@ -48,6 +51,7 @@ class UserServiceSpec extends Specification {
       User user = userService.save(command)
     then:"We expect user is saved"
     1 * userRepository.save(_ as User)
+    1 *  recoveryService.saveRegistrationCode('josdem@email.com')
     user.username == 'josdem'
     user.firstName == 'name'
     user.lastName == 'lastname'

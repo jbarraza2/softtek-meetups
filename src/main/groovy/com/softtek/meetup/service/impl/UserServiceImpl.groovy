@@ -7,6 +7,7 @@ import  com.softtek.meetup.model.User
 import  com.softtek.meetup.command.Command
 import  com.softtek.meetup.binder.UserBinder
 import  com.softtek.meetup.service.UserService
+import  com.softtek.meetup.service.RecoveryService
 import  com.softtek.meetup.repository.UserRepository
 
 @Service
@@ -16,6 +17,8 @@ class UserServiceImpl implements UserService {
   UserBinder userBinder
   @Autowired
   UserRepository userRepository
+  @Autowired
+  RecoveryService recoveryService
 
   User getByUsername(String username){
     userRepository.findByUsername(username)
@@ -28,6 +31,7 @@ class UserServiceImpl implements UserService {
   User save(Command command){
     User user = userBinder.bindUser(command)
     userRepository.save(user)
+    recoveryService.saveRegistrationCode(user.email)
     user
   }
 
