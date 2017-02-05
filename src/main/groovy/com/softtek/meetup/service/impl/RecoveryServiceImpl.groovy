@@ -11,7 +11,7 @@ class RecoveryServiceImpl implements RecoveryService {
   @Autowired
   RegistrationCodeRepository repository
 
-	void saveRegistrationCode(String email){
+	void sendConfirmationAccountToken(String email){
     RegistrationCode registrationCode = new RegistrationCode(email:email)  
     repository.save(registrationCode)
 	}
