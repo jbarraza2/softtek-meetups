@@ -31,7 +31,7 @@ class UserServiceImpl implements UserService {
   User save(Command command){
     User user = userBinder.bindUser(command)
     userRepository.save(user)
-    recoveryService.saveRegistrationCode(user.email)
+    recoveryService.sendConfirmationAccountToken(user.email)
     user
   }
 
