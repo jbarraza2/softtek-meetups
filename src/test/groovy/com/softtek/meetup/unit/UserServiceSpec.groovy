@@ -51,7 +51,7 @@ class UserServiceSpec extends Specification {
       User user = userService.save(command)
     then:"We expect user is saved"
     1 * userRepository.save(_ as User)
-    1 *  recoveryService.saveRegistrationCode('josdem@email.com')
+    1 *  recoveryService.sendConfirmationAccountToken('josdem@email.com')
     user.username == 'josdem'
     user.firstName == 'name'
     user.lastName == 'lastname'
