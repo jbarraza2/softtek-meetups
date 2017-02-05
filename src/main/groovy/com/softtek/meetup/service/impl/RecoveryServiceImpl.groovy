@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value
 import com.softtek.meetup.service.RecoveryService
 import com.softtek.meetup.repository.RegistrationCodeRepository
 import com.softtek.meetup.model.RegistrationCode
-import com.jos.dem.vetlog.command.Command
-import com.jos.dem.vetlog.command.MessageCommand
+import com.softtek.meetup.command.Command
+import com.softtek.meetup.command.MessageCommand
 
 @Service
 class RecoveryServiceImpl implements RecoveryService {

@@ -1,3 +1,5 @@
 package com.softtek.meetup.command
 
-interface Command {}
+import java.io.Serializable
+
+interface Command extends Serializable {}
