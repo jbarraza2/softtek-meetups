@@ -64,7 +64,7 @@ compileGroovy {
 
 watch {
   groovy {
-    files files('src/main/groovy')
+    files files('src/main/resources')
     tasks 'compileGroovy'
   }
 }
@@ -73,4 +73,11 @@ bootRun {
 	systemProperties = System.properties
 }
 
+task watching {
+  new Thread({
+    tasks.watch.execute()
+  } as Runnable).start()
+}
+
+bowerInstall.dependsOn watching
 bootRun.dependsOn rootProject.tasks['bowerInstall']
