@@ -7,7 +7,7 @@ import com.softtek.meetup.service.RegistrationService
 import com.softtek.meetup.service.LocaleService
 import com.softtek.meetup.model.RegistrationCode
 import com.softtek.meetup.repository.RegistrationCodeRepository
-import com.softtek.meetup.exception.VetlogException
+import com.softtek.meetup.exception.SofttekMeetupException
 
 @Service
 class RegistrationServiceImpl implements RegistrationService {
@@ -19,7 +19,7 @@ class RegistrationServiceImpl implements RegistrationService {
 
   String findEmailByToken(String token){
     RegistrationCode registrationCode = repository.findByToken(token)
-    if(!registrationCode) throw new VetlogException(localeService.getMessage('exception.token.not.found'))
+    if(!registrationCode) throw new SofttekMeetupException(localeService.getMessage('exception.token.not.found'))
     registrationCode.email
   }
 

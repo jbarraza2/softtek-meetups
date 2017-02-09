@@ -1,12 +1,16 @@
 package com.softtek.meetup.exception
 
 import java.lang.RuntimeException
+import java.lang.Throwable
 
 class SofttekMeetupException extends RuntimeException {
 
-  @Override
-  String getMessage() {
-    "SofttekMeetup exception"
+  SofttekMeetupException(String message){
+    super(message)
+  }
+
+  SofttekMeetupException(String message, Throwable cause){
+  	super(message, cause)
   }
 
 }

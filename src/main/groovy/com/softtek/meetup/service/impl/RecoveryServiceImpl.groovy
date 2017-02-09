@@ -13,6 +13,8 @@ import com.softtek.meetup.model.RegistrationCode
 import com.softtek.meetup.model.User
 import com.softtek.meetup.command.Command
 import com.softtek.meetup.command.MessageCommand
+import com.softtek.meetup.exception.UserNotFoundException
+import com.softtek.meetup.exception.SofttekMeetupException
 
 @Service
 class RecoveryServiceImpl implements RecoveryService {
@@ -50,7 +52,7 @@ class RecoveryServiceImpl implements RecoveryService {
 
   User getUserByToken(String token){
     String email = registrationService.findEmailByToken(token)
-    if(!email) throw new VetlogException(localeService.getMessage('exception.token.not.found'))
+    if(!email) throw new SofttekMeetupException(localeService.getMessage('exception.token.not.found'))
     User user = userRepository.findByEmail(email)
     user
   }
