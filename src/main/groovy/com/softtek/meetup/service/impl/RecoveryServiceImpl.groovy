@@ -25,8 +25,10 @@ class RecoveryServiceImpl implements RecoveryService {
 
   @Value('${server.name}')
   String serverName
-  @Value('${emailer.template.register}')
+  @Value('${template.register.name}')
   String template
+  @Value('${template.register.path}')
+  String path
 
   void sendConfirmationAccountToken(String email){
     RegistrationCode registrationCode = new RegistrationCode(email:email)  
