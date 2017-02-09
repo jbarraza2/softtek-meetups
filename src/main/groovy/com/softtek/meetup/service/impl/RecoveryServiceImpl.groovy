@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value
 import com.softtek.meetup.service.RecoveryService
 import com.softtek.meetup.service.RestService
 import com.softtek.meetup.repository.RegistrationCodeRepository
+import com.softtek.meetup.repository.UserRepository
 import com.softtek.meetup.model.RegistrationCode
 import com.softtek.meetup.model.User
 import com.softtek.meetup.command.Command
@@ -17,6 +18,8 @@ class RecoveryServiceImpl implements RecoveryService {
 
   @Autowired
   RegistrationCodeRepository repository
+  @Autowired
+  UserRepository userRepository
   @Autowired
   RestService restService
 
