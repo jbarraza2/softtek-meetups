@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 
 import com.softtek.meetup.service.RecoveryService
+import com.softtek.meetup.service.RegistrationService
 import com.softtek.meetup.service.RestService
 import com.softtek.meetup.repository.RegistrationCodeRepository
 import com.softtek.meetup.repository.UserRepository
@@ -21,6 +22,8 @@ class RecoveryServiceImpl implements RecoveryService {
   @Autowired
   UserRepository userRepository
   @Autowired
+  RegistrationService registrationService
+  @Autowired
   RestService restService
 
   @Value('${server.name}')
@@ -33,7 +36,7 @@ class RecoveryServiceImpl implements RecoveryService {
   void sendConfirmationAccountToken(String email){
     RegistrationCode registrationCode = new RegistrationCode(email:email)  
     repository.save(registrationCode)
-    Command command = new MessageCommand(email:email, template:template, url:"${serverName}${registrationCode.token}")
+    Command command = new MessageCommand(email:email, template:template, url:"${serverName}${path}${registrationCode.token}")
     restService.sendCommand(command)
   }
 
