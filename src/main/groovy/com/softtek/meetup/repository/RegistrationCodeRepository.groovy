@@ -5,7 +5,7 @@ import com.softtek.meetup.model.RegistrationCode
 
 interface RegistrationCodeRepository extends JpaRepository<RegistrationCode,Long> {
 
-	RegistrationCode findEmailByToken(String token)
+	RegistrationCode findByToken(String token)
 	RegistrationCode save(RegistrationCode registrationCode)
 	
 }
