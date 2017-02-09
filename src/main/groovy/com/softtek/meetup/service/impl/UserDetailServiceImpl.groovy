@@ -22,7 +22,7 @@ class UserDetailServiceImpl implements UserDetailsService {
     User user = userService.getByUsername(username)
     Set<GrantedAuthority> grantedAuthorities = [] as Set
     grantedAuthorities << new SimpleGrantedAuthority(user.role.toString())
-    new org.springframework.security.core.userdetails.User(user.username, user.password, user.enabled, user.accountNonExpired, user.creadentialsNonExpired, user.accountNonLocked, grantedAuthorities)
+    new org.springframework.security.core.userdetails.User(user.username, user.password, user.enabled, user.accountNonExpired, user.credentialsNonExpired, user.accountNonLocked, grantedAuthorities)
   }
 
 }
