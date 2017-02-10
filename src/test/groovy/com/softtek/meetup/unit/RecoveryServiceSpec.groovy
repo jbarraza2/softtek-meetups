@@ -5,12 +5,14 @@ import spock.lang.Specification
 import com.softtek.meetup.service.RecoveryService
 import com.softtek.meetup.service.RestService
 import com.softtek.meetup.service.RegistrationService
+import com.softtek.meetup.service.LocaleService
 import com.softtek.meetup.service.impl.RecoveryServiceImpl
 import com.softtek.meetup.repository.RegistrationCodeRepository
 import com.softtek.meetup.repository.UserRepository
 import com.softtek.meetup.model.User
 import com.softtek.meetup.model.RegistrationCode
 import com.softtek.meetup.command.Command
+import com.softtek.meetup.exception.UserNotFoundException
 
 class RecoveryServiceSpec extends Specification {
 
@@ -20,12 +22,14 @@ class RecoveryServiceSpec extends Specification {
   RestService restService = Mock(RestService)
   RegistrationService registrationService = Mock(RegistrationService)
   UserRepository userRepository = Mock(UserRepository)
+  LocaleService localeService = Mock(LocaleService)
 
   def setup(){
     recoveryService.repository = repository
     recoveryService.restService = restService
     recoveryService.registrationService = registrationService
     recoveryService.userRepository = userRepository
+    recoveryService.localeService = localeService
   }
 
 	void "should persist an registration code"(){
@@ -52,5 +56,18 @@ class RecoveryServiceSpec extends Specification {
     then:"We expect user is enabled"
       result.enabled
       1 * userRepository.save(user)
+  }
+
+  void "should not confirm account for token since user not found"(){
+   given:"A token"
+      String token = 'token'
+    and:"An email"
+      String email = 'josdem@email.com'  
+    when:"We call for account confirmation"
+      localeService.getMessage('exception.user.not.found') >> 'User not found'
+      registrationService.findEmailByToken(token) >> email 
+      User result = recoveryService.confirmAccountForToken(token) 
+    then:"We expect an exception"
+      thrown UserNotFoundException
   }
 }

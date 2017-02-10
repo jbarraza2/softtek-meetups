@@ -8,6 +8,7 @@ import com.softtek.meetup.service.RecoveryService
 import com.softtek.meetup.service.RegistrationService
 import com.softtek.meetup.service.RestService
 import com.softtek.meetup.repository.RegistrationCodeRepository
+import com.softtek.meetup.service.LocaleService
 import com.softtek.meetup.repository.UserRepository
 import com.softtek.meetup.model.RegistrationCode
 import com.softtek.meetup.model.User
@@ -27,6 +28,8 @@ class RecoveryServiceImpl implements RecoveryService {
   RegistrationService registrationService
   @Autowired
   RestService restService
+  @Autowired
+  LocaleService localeService
 
   @Value('${server.name}')
   String serverName
@@ -57,4 +60,4 @@ class RecoveryServiceImpl implements RecoveryService {
     user
   }
 
-}
+}  
