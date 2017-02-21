@@ -110,7 +110,7 @@
     <br/>
     <form id="register" th:action="@{/user/save}" th:object="${userCommand}" method="post">
      <div class="form-group">
-       <label th:for="name" th:text="#{user.name}"/>
+       <label th:for="name" th:text="#{user.firstname}"/>
        <input type="text" name='name' class="form-control" placeholder="Enter name(s)" id='name'/>
        <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
      </div>
