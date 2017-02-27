@@ -52,7 +52,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html"><img src="/assets/third-party/assan-theme/img/logo.png" alt="ASSAN"/></a>
+        <a class="navbar-brand" href="index.html"><img th:src="@{/assets/third-party/assan-theme/img/logo.png}" alt="ASSAN"/></a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -116,20 +116,20 @@
   </div>
   <form th:action="@{/login}" method='POST' id='loginForm' autocomplete='off'>
    <div class="form-group">
-    <label for="username">Username</label>
+    <label th:text="#{login.username}"></label>
     <input type="text" name='username' class="form-control" placeholder="username" id='username'/>
   </div>
   <div class="form-group">
-    <label for="password">Password</label>
+    <label th:text="#{login.password}"></label>
     <input type="password" name='password' class="form-control" placeholder="password" id='password'/>
   </div>
   <div class="pull-left">
 
-    <p><a href="#">Forget password?</a></p>
+    <p><a href="#" th:text="#{login.forgot}"></a></p>
 
   </div>
   <div class="pull-right">
-    <button type="submit" class="btn btn-theme-dark">Login</button>
+    <button type="submit" class="btn btn-theme-dark" th:text="#{login.action}"></button>
   </div>
   <div class="clearfix"></div>
 </form>
@@ -162,15 +162,15 @@
   <div class="footer-col">
    <h3>Featured Work</h3>
    <ul class="list-inline f2-work">
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-1.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-2.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-3.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-4.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-5.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-6.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-7.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-8.jpg" class="img-responsive" alt=""/></a></li>
-    <li><a href="portfolio-single.html"><img src="/assets/third-party/assan-theme/img/img-9.jpg" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-1.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-2.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-3.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-4.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-5.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-6.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-7.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-8.jpg}" class="img-responsive" alt=""/></a></li>
+    <li><a href="portfolio-single.html"><img th:src="@{/assets/third-party/assan-theme/img/img-9.jpg}" class="img-responsive" alt=""/></a></li>
   </ul>
 </div>
 </div>

@@ -41,10 +41,9 @@
           </div>
           <div class="col-sm-8 text-right">
             <ul class="list-inline top-dark-right">
-              <li class="hidden-sm hidden-xs"><i class="fa fa-envelope"></i> support@meetsoft.com</li>
-              <li class="hidden-sm hidden-xs"><i class="fa fa-phone"></i> +01 1800 453 7678</li>
-              <li><a th:href="@{/login}"><i class="fa fa-lock"></i> Login</a></li>
-              <li><a href="#"><i class="fa fa-user"></i> Sign Up</a></li>
+              <li class="hidden-sm hidden-xs"><i class="fa fa-envelope"> <label th:text="#{index.supportEmail}" /></i></li>
+              <li><a th:href="@{/login}"><i class="fa fa-lock"> <label th:text="#{login.action}"/></i></a></li>
+              <li><a href="#"><i class="fa fa-user"></i> <label th:text="#{index.signUp}" /></a></li>
             </ul>
           </div>
         </div>
@@ -99,7 +98,7 @@
                     <!-- SLIDE -->
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Powerful Theme">
                         <!-- MAIN IMAGE -->
-                        <img src="/assets/third-party/assan-theme/img/bg-3.jpg"  alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"  />
+                        <img th:src="@{/assets/third-party/assan-theme/img/bg-3.jpg}"  alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"  />
 
                         <div class="caption title-2 sft"
                              data-x="50"
@@ -144,13 +143,7 @@
                     <!-- SLIDE -->
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Unique Theme">
                         <!-- MAIN IMAGE -->
-                        <img src="/assets/third-party/assan-theme/img/showcase-4.jpg"  alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
-
-
-
-
-
-
+                        <img th:src="@{/assets/third-party/assan-theme/img/showcase-4.jpg}"  alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
 
                         <div class="caption text-center-top sft"
                              data-x="center"
@@ -185,7 +178,7 @@
                     <!-- SLIDE -->
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Multipurpose">
                         <!-- MAIN IMAGE -->
-                        <img src="/assets/third-party/assan-theme/img/bg-1.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
+                        <img th:src="@{/assets/third-party/assan-theme/img/bg-1.jpg}"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
 
                         <!-- LAYER NR. 1 -->
                         <div class="caption left-tile-text sfr tp-resizeme"
@@ -297,10 +290,9 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="center-heading">
-                        <h2>What <strong>we do (Business Cause)</strong> </h2>
+                        <h2><strong th:text="#{index.whatWeDoTitle}"></strong></h2>
                         <span class="center-line"></span>
-                        <p class="sub-text margin40">
-                            Brief summary of what we do on MeetSoft and why we are so cool about it!</p>
+                        <p class="sub-text margin40" th:text="#{index.whatWeDoContent}"></p>
                     </div>
                 </div>
 
@@ -311,7 +303,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="center-heading">
-                        <h2>Recent <strong>Meetings</strong></h2>
+                        <h2><strong th:text="#{index.recentMeetings}"></strong></h2>
                         <span class="center-line"></span>
                     </div>
                 </div>
@@ -322,19 +314,19 @@
 
                 <div id="filters-container" class="cbp-l-filters-alignCenter">
                     <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
-                        All <div class="cbp-filter-counter"></div>
+                        <label th:text="#{index.meetingsCategoriesAll}"/> <div class="cbp-filter-counter"></div>
                     </div>
                     <div data-filter=".identity" class="cbp-filter-item">
-                        Software <div class="cbp-filter-counter"></div>
+                        <label th:text="#{index.meetingsCategoriesSoftware}"/> <div class="cbp-filter-counter"></div>
                     </div>
                     <div data-filter=".web-design" class="cbp-filter-item">
-                        Infrastructure <div class="cbp-filter-counter"></div>
+                        <label th:text="#{index.meetingsCategoriesInfrastructure}"/> <div class="cbp-filter-counter"></div>
                     </div>
                     <div data-filter=".graphic" class="cbp-filter-item">
-                        Graphic <div class="cbp-filter-counter"></div>
+                        <label th:text="#{index.meetingsCategoriesGraphic}"/> <div class="cbp-filter-counter"></div>
                     </div>
                     <div data-filter=".graphic, .identity" class="cbp-filter-item">
-                        Back/End <div class="cbp-filter-counter"></div>
+                        <label th:text="#{index.meetingsCategoriesBackEnd}"/> <div class="cbp-filter-counter"></div>
                     </div>
                 </div>
 
@@ -358,7 +350,7 @@
                         <a class="cbp-caption cbp-lightbox" data-title="The Gang Blue by Cosmin Capitanu"
                            href="/assets/third-party/assan-theme/img/img-1.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-1.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-1.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -373,7 +365,7 @@
                     <div class="cbp-item graphic identity">
                         <a class="cbp-caption cbp-lightbox" href="/assets/third-party/assan-theme/img/img-2.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-2.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-2.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -389,7 +381,7 @@
                         <a class="cbp-caption cbp-lightbox"
                            href="/assets/third-party/assan-theme/img/mas-2.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/mas-2.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/mas-2.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -405,7 +397,7 @@
                         <a class="cbp-caption cbp-lightbox"
                            href="/assets/third-party/assan-theme/img/mas-2.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/mas-1.jpg" alt="" />
+                                <img src="@{/assets/third-party/assan-theme/img/mas-1.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -420,7 +412,7 @@
                     <div class="cbp-item graphic">
                         <a class="cbp-caption cbp-lightbox"  href="/assets/third-party/assan-theme/img/img-3.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-3.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-3.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -435,7 +427,7 @@
                     <div class="cbp-item web-design">
                         <a class="cbp-caption cbp-lightbox"  href="/assets/third-party/assan-theme/img/img-4.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-4.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-4.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -450,7 +442,7 @@
                     <div class="cbp-item identity">
                         <a class="cbp-caption cbp-lightbox"  href="http://vimeo.com/156783#">
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-5.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-5.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -465,7 +457,7 @@
                     <div class="cbp-item identity">
                         <a class="cbp-caption cbp-lightbox"  href="/assets/third-party/assan-theme/img/mas-2.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/mas-1.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/mas-1.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -481,7 +473,7 @@
                         <a class="cbp-caption cbp-lightbox"
                            href="https://www.youtube.com/watch?v=dChhzNGHgnA">
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-6.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-6.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -497,7 +489,7 @@
                         <a class="cbp-caption cbp-lightbox"
                            href="img/img-7.jpg">
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-7.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-7.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -512,7 +504,7 @@
                     <div class="cbp-item web-design graphic">
                         <a class="cbp-caption cbp-lightbox" href="/assets/third-party/assan-theme/img/img-8.jpg" >
                             <div class="cbp-caption-defaultWrap">
-                                <img src="/assets/third-party/assan-theme/img/img-8.jpg" alt="" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-8.jpg}" alt="" />
                             </div>
                             <div class="cbp-caption-activeWrap">
                                 <div class="cbp-l-caption-alignCenter">
@@ -534,8 +526,8 @@
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="center-heading">
-                            <h2><strong>What</strong> Client’s Say</h2>
-                            <p>2600+ Worldwide customers  use Assan template.</p>
+                            <h2><strong th:text="#{index.whatClientSayTitle}"></strong></h2>
+                            <p><label th:text="#{index.whatClientSayContent}"/></p>
                             <span class="center-line"></span>
 
                         </div>
@@ -548,9 +540,9 @@
                         <div class="testi-slide">
                             <ul class="slides">
                                 <li>
-                                    <img src="/assets/third-party/assan-theme/img/customer-1.jpg" alt="" />
+                                    <img th:src="@{/assets/third-party/assan-theme/img/customer-1.jpg}" alt="" />
                                     <p>
-                                        <i class="ion-quote"></i>
+                                        <i class="ion-quote"></i>                                        
                                         It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
                                     </p>
                                     <h4 class="test-author">
@@ -558,7 +550,7 @@
                                     </h4>
                                 </li><!--testi item-->
                                 <li>
-                                    <img src="/assets/third-party/assan-theme/img/customer-2.jpg" alt="" />
+                                    <img th:src="@{/assets/third-party/assan-theme/img/customer-2.jpg}" alt="" />
                                     <p>
                                         <i class="ion-quote"></i>
                                         Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years </p>
@@ -567,7 +559,7 @@
                                     </h4>
                                 </li><!--testi item-->
                                 <li>
-                                    <img src="/assets/third-party/assan-theme/img/customer-3.jpg" alt="" />
+                                    <img th:src="@{/assets/third-party/assan-theme/img/customer-3.jpg}" alt="" />
                                     <p>
                                         <i class="ion-quote"></i>
                                         Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor.</p>
@@ -687,7 +679,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="center-heading">
-                            <h2>Expositors <strong></strong></h2>
+                            <h2><strong th:text="#{index.expositors}"></strong></h2>
                             <span class="center-line"></span>
                         </div>
                     </div>
@@ -695,10 +687,10 @@
                 <div class="row">
                     <div class="col-sm-3 text-center">
                         <div class="person-v2">
-                            <img src="/assets/third-party/assan-theme/img/team-5.jpg" class="img-responsive" alt="" />
+                            <img th:src="@{/assets/third-party/assan-theme/img/team-5.jpg}" class="img-responsive" alt="" />
                             <div class="person-desc-v2">
-                                <h3>Jose Luis</h3>
-                                <em>Java</em>
+                                <h3 th:text="#{index.expositorName1}"></h3>
+                                <em th:text="#{index.expositorTopic1}"></em>
                                 <ul class="list-inline top-social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -711,10 +703,10 @@
                     </div><!--person col end-->
                     <div class="col-sm-3 text-center">
                         <div class="person-v2">
-                            <img src="/assets/third-party/assan-theme/img/team-6.jpg" class="img-responsive" alt="" />
+                            <img th:src="@{/assets/third-party/assan-theme/img/team-6.jpg}" class="img-responsive" alt="" />
                             <div class="person-desc-v2">
-                                <h3>Jorge Barraza</h3>
-                                <em>Red Hat</em>
+                                <h3 th:text="#{index.expositorName2}"></h3>
+                                <em th:text="#{index.expositorTopic2}"></em>
                                 <ul class="list-inline top-social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -727,10 +719,10 @@
                     </div><!--person col end-->
                     <div class="col-sm-3 text-center">
                         <div class="person-v2">
-                            <img src="/assets/third-party/assan-theme/img/team-7.jpg" class="img-responsive" alt="" />
+                            <img th:src="@{/assets/third-party/assan-theme/img/team-7.jpg}" class="img-responsive" alt="" />
                             <div class="person-desc-v2">
-                                <h3>Daniel Valdez</h3>
-                                <em>Beers</em>
+                                <h3 th:text="#{index.expositorName3}"></h3>
+                                <em th:text="#{index.expositorTopic3}"></em>
                                 <ul class="list-inline top-social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -743,10 +735,10 @@
                     </div><!--person col end-->
                     <div class="col-sm-3 text-center">
                         <div class="person-v2">
-                            <img src="/assets/third-party/assan-theme/img/team-8.jpg" class="img-responsive" alt=""/>
+                            <img th:src="@{/assets/third-party/assan-theme/img/team-8.jpg}" class="img-responsive" alt=""/>
                             <div class="person-desc-v2">
-                                <h3>Azael Sanchez</h3>
-                                <em>Creative Designer</em>
+                                <h3 th:text="#{index.expositorName4}"></h3>
+                                <em th:text="#{index.expositorTopic4}"></em>
                                 <ul class="list-inline top-social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -766,7 +758,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="center-heading">
-                        <h2><strong>Top</strong> Meetings / Events</h2>
+                        <h2><strong th:text="#{index.topMeetings}"></strong></h2>
                         <span class="center-line"></span>
                     </div>
                 </div>
@@ -776,7 +768,7 @@
                     <div>
                         <a href="#">
                             <div class="item-img-wrap">
-                                <img src="/assets/third-party/assan-theme/img/img-8.jpg" class="img-responsive" alt="workimg" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-8.jpg}" class="img-responsive" alt="workimg" />
                                 <div class="item-img-overlay">
                                     <span></span>
                                 </div>
@@ -793,7 +785,7 @@
                     <div>
                         <a href="#">
                             <div class="item-img-wrap">
-                                <img src="/assets/third-party/assan-theme/img/img-3.jpg" class="img-responsive" alt="workimg" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-3.jpg}" class="img-responsive" alt="workimg" />
                                 <div class="item-img-overlay">
                                     <span></span>
                                 </div>
@@ -810,7 +802,7 @@
                     <div>
                         <a href="#">
                             <div class="item-img-wrap">
-                                <img src="/assets/third-party/assan-theme/img/img-6.jpg" class="img-responsive" alt="workimg" />
+                                <img th:src="@{/assets/third-party/assan-theme/img/img-6.jpg}" class="img-responsive" alt="workimg" />
                                 <div class="item-img-overlay">
                                     <span></span>
                                 </div>
@@ -852,15 +844,15 @@
                         <div class="footer-col">
                             <h3>Featured Work</h3>
                             <ul class="list-inline f2-work">
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-1.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-2.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-3.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-4.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-5.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-6.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-7.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-8.jpg" class="img-responsive" alt="" /></a></li>
-                                <li><a href="#"><img src="/assets/third-party/assan-theme/img/img-9.jpg" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-1.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-2.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-3.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-4.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-5.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-6.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-7.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-8.jpg}" class="img-responsive" alt="" /></a></li>
+                                <li><a href="#"><img th:src="@{/assets/third-party/assan-theme/img/img-9.jpg}" class="img-responsive" alt="" /></a></li>
                             </ul>
                         </div>
                     </div><!--footer col-->
@@ -911,4 +903,3 @@
         <script src="/assets/third-party/assan-theme/js/pace.min.js" type="text/javascript"></script>
   </body>
 </html>
-
