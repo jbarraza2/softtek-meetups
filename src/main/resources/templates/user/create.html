@@ -140,7 +140,7 @@
       <label th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"></label>
     </div>
     <div class="pull-right">
-      <button type="submit" class="btn btn-theme-dark btn-lg">Register</button>
+      <button type="submit" class="btn btn-theme-dark btn-lg" th:text="#{login.register}"></button>
     </div>
     <div class="clearfix"></div>
   </form>
