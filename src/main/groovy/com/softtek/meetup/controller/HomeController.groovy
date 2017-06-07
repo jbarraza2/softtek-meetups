@@ -2,6 +2,7 @@ package com.softtek.meetup.controller
 
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.stereotype.Controller
+
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -11,8 +12,8 @@ class HomeController {
 
   @RequestMapping("/")
   String index(){
-  	log.info "Calling index"
-    'home/index'
+  	log.info "Calling home"
+    'home/home'
   }
 
 }

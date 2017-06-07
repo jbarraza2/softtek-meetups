@@ -112,7 +112,7 @@
      <div class="form-group">
        <label th:for="firstname" th:text="#{user.firstname}"/>
        <input type="text" name='name' class="form-control" placeholder="Enter name(s)" id='name'/>
-       <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{name}"></label>
+       <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></label>
      </div>
      <div class="form-group">
       <label th:for="lastname" th:text="#{user.lastname}"/>
