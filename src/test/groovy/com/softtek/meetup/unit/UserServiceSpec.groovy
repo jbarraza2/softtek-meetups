@@ -14,7 +14,7 @@ import  com.softtek.meetup.model.Role
 
 class UserServiceSpec extends Specification {
 
-	UserService userService = new UserServiceImpl();
+	UserService userService = new UserServiceImpl()
 
   UserRepository userRepository = Mock(UserRepository)
   UserBinder userBinder = new UserBinder()
@@ -34,7 +34,7 @@ class UserServiceSpec extends Specification {
     then:
     1 * userRepository.findByUsername(username)
   }
-	
+
   void "should find a user by email"(){
     given:"An email"
       String email = 'josdem@email.com'
