@@ -16,6 +16,9 @@ import com.softtek.meetup.command.UserCommand
 import com.softtek.meetup.validator.UserValidator
 import com.softtek.meetup.service.UserService
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 @Controller
 @RequestMapping("/user")
 class UserController {
@@ -24,6 +27,8 @@ class UserController {
   UserValidator userValidator
   @Autowired
   UserService userService
+
+	Logger log = LoggerFactory.getLogger(this.class)
 
   @InitBinder
   private void initBinder(WebDataBinder binder) {
@@ -39,12 +44,17 @@ class UserController {
   }
 
   @RequestMapping(method = POST, value = "/save")
-  String save(@Valid UserCommand command, BindingResult bindingResult) {
+  ModelAndView save(@Valid UserCommand command, BindingResult bindingResult) {
+  log.info "User Command: ${command.dump()}"
+  
     if (bindingResult.hasErrors()) {
-      return 'user/create'
+	    def modelAndView = new ModelAndView('user/create')
+	    modelAndView.addObject('userCommand', command)
+	    return modelAndView
     }
+   
     userService.save(command)
-    'redirect:/'
+    new ModelAndView('redirect:/')
   }
 
 }

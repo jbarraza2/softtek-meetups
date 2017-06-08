@@ -27,6 +27,7 @@ class UserCommand implements Command {
   String lastname
 
   @Email
+  @NotNull
   String email
   
 }
