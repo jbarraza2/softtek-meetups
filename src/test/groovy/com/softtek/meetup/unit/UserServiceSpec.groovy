@@ -46,15 +46,22 @@ class UserServiceSpec extends Specification {
 
   void "should save an user"(){
     given:"A command"
-      Command command = new UserCommand(username:'josdem',password:'password',passwordConfirmation:'password',email:'josdem@email.com',name:'name',lastname:'lastname')
+      Command command = new UserCommand(
+        username:'josdem',
+        password:'password',
+        passwordConfirmation:'password',
+        email:'josdem@email.com',
+        firstname:'firstname',
+        lastname:'lastname'
+    )
     when:"We save an user"
       User user = userService.save(command)
     then:"We expect user is saved"
     1 * userRepository.save(_ as User)
     1 *  recoveryService.sendConfirmationAccountToken('josdem@email.com')
     user.username == 'josdem'
-    user.firstName == 'name'
-    user.lastName == 'lastname'
+    user.firstname == 'firstname'
+    user.lastname == 'lastname'
     user.email == 'josdem@email.com'
     user.role == Role.USER
     user.password.size() == 60
