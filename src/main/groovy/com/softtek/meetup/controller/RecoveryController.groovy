@@ -28,4 +28,10 @@ class RecoveryController {
     'login/login'
 	}
 
+  @RequestMapping(method = GET, value = "/password")
+	String password(){
+  	log.info "Asking for change password"
+    'recovery/recoveryPassword'
+	}
+
 }
