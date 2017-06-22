@@ -5,8 +5,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.servlet.ModelAndView
 import org.springframework.stereotype.Controller
 
+import com.softtek.meetup.command.RecoveryPasswordCommand
 import com.softtek.meetup.service.RecoveryService
 
 import org.slf4j.Logger
@@ -33,7 +35,7 @@ class RecoveryController {
   	log.info "Asking for change password"
     ModelAndView modelAndView = new ModelAndView('recovery/recoveryPassword')
     modelAndView.addObject('recoveryPasswordCommand',  new RecoveryPasswordCommand())
-    ModelAndView
+    modelAndView
 	}
 
 }
