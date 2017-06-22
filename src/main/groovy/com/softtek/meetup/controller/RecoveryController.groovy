@@ -29,9 +29,11 @@ class RecoveryController {
 	}
 
   @RequestMapping(method = GET, value = "/password")
-	String password(){
+	ModelAndView password(){
   	log.info "Asking for change password"
-    'recovery/recoveryPassword'
+    ModelAndView modelAndView = new ModelAndView('recovery/recoveryPassword')
+    modelAndView.addObject('recoveryPasswordCommand',  new RecoveryPasswordCommand())
+    ModelAndView
 	}
 
 }
