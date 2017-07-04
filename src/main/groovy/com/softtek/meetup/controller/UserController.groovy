@@ -45,14 +45,14 @@ class UserController {
 
   @RequestMapping(method = POST, value = "/save")
   ModelAndView save(@Valid UserCommand command, BindingResult bindingResult) {
-  log.info "User Command: ${command.dump()}"
-  
+  log.info "Saving user: ${command?.username}"
+
     if (bindingResult.hasErrors()) {
 	    def modelAndView = new ModelAndView('user/create')
 	    modelAndView.addObject('userCommand', command)
 	    return modelAndView
     }
-   
+
     userService.save(command)
     new ModelAndView('redirect:/')
   }
