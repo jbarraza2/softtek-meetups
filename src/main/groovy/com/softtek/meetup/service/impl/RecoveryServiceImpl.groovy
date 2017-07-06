@@ -37,6 +37,8 @@ class RecoveryServiceImpl implements RecoveryService {
   String template
   @Value('${template.register.path}')
   String path
+  @Value('${template.forgot.name}')
+  String forgotTemplate
   @Value('${template.forgot.path}')
   String forgotPath
 
