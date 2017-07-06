@@ -66,7 +66,7 @@ class RecoveryServiceImpl implements RecoveryService {
 
   void generateRegistrationCodeForEmail(String email){
     User user = userRepository.findByEmail(email)
-    if(!user) throw new UserNotFoundException(localeService.getMessage('exception.user.not.'))
+    if(!user) throw new UserNotFoundException(localeService.getMessage('exception.user.not.found'))
     if(!user.enabled) throw new SofttekMeetupException(localeService.getMessage('exception.account.not.activated'))
     String token = registrationService.generateToken(email)
     Command command = new MessageCommand(email:email, template:forgotTemplate, url:"${server}${forgotPath}${token}")
