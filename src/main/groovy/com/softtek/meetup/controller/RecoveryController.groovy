@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.InitBinder
 import org.springframework.web.bind.WebDataBinder
 
+import org.springframework.validation.Validator
+import org.springframework.validation.Errors
+
 import com.softtek.meetup.command.RecoveryPasswordCommand
 import com.softtek.meetup.service.RecoveryService
 
