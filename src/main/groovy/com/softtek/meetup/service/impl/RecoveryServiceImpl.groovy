@@ -39,7 +39,7 @@ class RecoveryServiceImpl implements RecoveryService {
   String path
 
   void sendConfirmationAccountToken(String email){
-    RegistrationCode registrationCode = new RegistrationCode(email:email)  
+    RegistrationCode registrationCode = new RegistrationCode(email:email)
     repository.save(registrationCode)
     Command command = new MessageCommand(email:email, template:template, url:"${serverName}${path}${registrationCode.token}")
     restService.sendCommand(command)
@@ -60,4 +60,13 @@ class RecoveryServiceImpl implements RecoveryService {
     user
   }
 
-}  
+  void generateRegistrationCodeForEmail(String email){
+    User user = userRepository.findByEmail(email)
+    if(!user) throw new UserNotFoundException(localeService.getMessage('exception.user.not.'))
+    if(!user.enabled) throw new VetlogException(localeService.getMessage('exception.account.not.activated'))
+    String token = registrationService.generateToken(email)
+    Command command = new MessageCommand(email:email, template:forgotTemplate, url:"${server}${forgotPath}${token}")
+    restService.sendCommand(command)
+  }
+
+}
