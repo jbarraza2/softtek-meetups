@@ -31,17 +31,19 @@ class RecoveryServiceImpl implements RecoveryService {
   @Autowired
   LocaleService localeService
 
-  @Value('${server.name}')
-  String serverName
+  @Value('${server}')
+  String server
   @Value('${template.register.name}')
   String template
   @Value('${template.register.path}')
   String path
+  @Value('${template.forgot.path}')
+  String forgotPath
 
   void sendConfirmationAccountToken(String email){
     RegistrationCode registrationCode = new RegistrationCode(email:email)
     repository.save(registrationCode)
-    Command command = new MessageCommand(email:email, template:template, url:"${serverName}${path}${registrationCode.token}")
+    Command command = new MessageCommand(email:email, template:template, url:"${server}${path}${registrationCode.token}")
     restService.sendCommand(command)
   }
 
@@ -63,7 +65,7 @@ class RecoveryServiceImpl implements RecoveryService {
   void generateRegistrationCodeForEmail(String email){
     User user = userRepository.findByEmail(email)
     if(!user) throw new UserNotFoundException(localeService.getMessage('exception.user.not.'))
-    if(!user.enabled) throw new VetlogException(localeService.getMessage('exception.account.not.activated'))
+    if(!user.enabled) throw new SofttekMeetupException(localeService.getMessage('exception.account.not.activated'))
     String token = registrationService.generateToken(email)
     Command command = new MessageCommand(email:email, template:forgotTemplate, url:"${server}${forgotPath}${token}")
     restService.sendCommand(command)
