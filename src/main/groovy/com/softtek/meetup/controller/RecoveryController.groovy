@@ -22,8 +22,13 @@ class RecoveryController {
   RecoveryService recoveryService
 
   Logger log = LoggerFactory.getLogger(this.class)
+  
+   @InitBinder('getEmailForRecovery')
+	private void initGetEmailBinder(WebDataBinder binder) {
+		binder.addValidators(generateRegistrationCodeForEmail)
+    }
 
-	@RequestMapping(method = GET, value = "/activate/{token}")
+   @RequestMapping(method = GET, value = "/activate/{token}")
 	String create(@PathVariable String token){
   	log.info "Calling activate token"
     recoveryService.confirmAccountForToken(token)
@@ -38,4 +43,13 @@ class RecoveryController {
     modelAndView
 	}
 
+   @RequestMapping(method = POST, value = "/email")
+	ModelAndView getEmailForRecovery(@Valid RecoveryPasswordCommand command, BindingResult bindingResult){
+	
+	if(bindingResult.hasErrors()){
+      return new ModelAndView('home/home')
+    }
+    ModelAndView modelAndView = new ModelAndView('home/home')
+    recoveryService.generateRegistrationCodeForEmail(command.email)
+    }
 }
