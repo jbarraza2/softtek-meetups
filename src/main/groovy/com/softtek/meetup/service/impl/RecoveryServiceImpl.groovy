@@ -73,6 +73,13 @@ class RecoveryServiceImpl implements RecoveryService {
     restService.sendCommand(command)
   }
 
+  private User getUserByToken(String token){
+    String email = registrationService.findEmailByToken(token)
+    if(!email) throw new SofttekMeetupException(localeService.getMessage('exception.token.not.found'))
+    User user = userRepository.findByEmail(email)
+    user
+  }
+
   User changePassword(Command command){
     User user = getUserByToken(command.token)
     user.password = new BCryptPasswordEncoder().encode(command.password)
