@@ -6,4 +6,5 @@ interface RecoveryService {
 	void sendConfirmationAccountToken(String email)
 	User confirmAccountForToken(String token)
   void generateRegistrationCodeForEmail(String email)
+  User changePassword(Command command)
 }
