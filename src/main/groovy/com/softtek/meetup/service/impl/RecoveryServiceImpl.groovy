@@ -3,6 +3,7 @@ package com.softtek.meetup.service.impl
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 import com.softtek.meetup.service.RecoveryService
 import com.softtek.meetup.service.RegistrationService

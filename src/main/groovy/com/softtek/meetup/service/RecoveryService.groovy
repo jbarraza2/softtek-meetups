@@ -1,6 +1,7 @@
 package com.softtek.meetup.service
 
 import com.softtek.meetup.model.User
+import com.softtek.meetup.command.Command
 
 interface RecoveryService {
 	void sendConfirmationAccountToken(String email)
