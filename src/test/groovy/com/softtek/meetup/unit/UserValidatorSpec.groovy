@@ -28,10 +28,9 @@ class UserValidatorSpec extends Specification {
     given: "An user command"
     Command command = new UserCommand(username:'josdem',password:'password',passwordConfirmation:'p4ssword',email:'josdem@email.com',firstname:'name',lastname:'lastname')
     when: "We validate user"
-    localeService.getMessage('user.validation.password.equals') >> 'The passwords are not equals'
     userValidator.validate(command, errors)
     then:"We expect an error"
-    1 * errors.reject('password','The passwords are not equals')
+    1 * errors.rejectValue('password','user.validation.password.equals')
   }
 
   void "should create an user"(){
@@ -91,10 +90,9 @@ class UserValidatorSpec extends Specification {
       User user = new User()
     when:
       userService.getByUsername('josdem') >> user
-      localeService.getMessage('user.validation.duplicated.username') >> 'This username is already taken'
       userValidator.validate(command, errors)
     then:
-    1 * errors.reject('username', 'This username is already taken')
+    1 * errors.rejectValue('username', 'user.validation.duplicated.username')
   }
 
   void "should validate duplicate email"(){
@@ -104,10 +102,9 @@ class UserValidatorSpec extends Specification {
       User user = new User()
     when:
       userService.getByEmail('josdem@email.com') >> user
-      localeService.getMessage('user.validation.duplicated.email') >> 'This email is already taken'
       userValidator.validate(command, errors)
     then:
-    1 * errors.reject('email', 'This email is already taken')
+    1 * errors.rejectValue('email', 'user.validation.duplicated.email')
   }
 
 }
