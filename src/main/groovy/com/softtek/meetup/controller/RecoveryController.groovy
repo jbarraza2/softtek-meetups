@@ -16,9 +16,12 @@ import org.springframework.validation.Errors
 import org.springframework.validation.BindingResult
 
 import javax.validation.Valid
+import javax.servlet.http.HttpServletRequest
 
 import com.softtek.meetup.command.RecoveryPasswordCommand
+import com.softtek.meetup.command.ChangePasswordCommand
 import com.softtek.meetup.service.RecoveryService
+import com.softtek.meetup.service.LocaleService
 import com.softtek.meetup.validator.RecoveryValidator
 import com.softtek.meetup.validator.ChangePasswordValidator
 
@@ -37,6 +40,8 @@ class RecoveryController {
   RecoveryValidator recoveryValidator
   @Autowired
   ChangePasswordValidator changePasswordValidator
+  @Autowired
+  LocaleService localeService
 
   Logger log = LoggerFactory.getLogger(this.class)
 
@@ -82,7 +87,7 @@ class RecoveryController {
     def modelAndView = new ModelAndView('recovery/changePassword')
     Boolean valid = recoveryService.validateToken(token)
     if(!valid){
-      modelAndView.addObject('message', localeService.getMessage('recovery.token.error', request))
+      modelAndView.addObject('message', localeService.getMessage('recovery.token.error'))
     }
     def changePasswordCommand = new ChangePasswordCommand(token:token)
     modelAndView.addObject('changePasswordCommand', changePasswordCommand)
