@@ -93,6 +93,18 @@ class RecoveryController {
     modelAndView.addObject('changePasswordCommand', changePasswordCommand)
     modelAndView
   }
+  
+  @RequestMapping(method = POST, value = "/change")
+  ModelAndView changePassword(@Valid ChangePasswordCommand command, BindingResult bindingResult){
+  	log.info "Calling save and changing password"
+    if(bindingResult.hasErrors()){
+      return new ModelAndView('recovery/changePassword')
+    }
+    ModelAndView modelAndView = new ModelAndView('login/login')
+    modelAndView.addObject('message', localeService.getMessage('recovery.password.changed'))
+    recoveryService.changePassword(command)
+    modelAndView
+  }
 
 }
 
