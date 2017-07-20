@@ -6,6 +6,9 @@ import org.springframework.validation.Validator
 import org.springframework.validation.Errors
 import org.springframework.stereotype.Component
 
+import com.softtek.meetup.command.ChangePasswordCommand
+import com.softtek.meetup.service.LocaleService
+
 @Component
 class ChangePasswordValidator implements Validator {
 

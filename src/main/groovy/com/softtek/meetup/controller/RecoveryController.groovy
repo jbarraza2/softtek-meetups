@@ -20,6 +20,7 @@ import javax.validation.Valid
 import com.softtek.meetup.command.RecoveryPasswordCommand
 import com.softtek.meetup.service.RecoveryService
 import com.softtek.meetup.validator.RecoveryValidator
+import com.softtek.meetup.validator.ChangePasswordValidator
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -32,53 +33,61 @@ class RecoveryController {
 
   @Autowired
   RecoveryService recoveryService
-  
   @Autowired
   RecoveryValidator recoveryValidator
-  
   @Autowired
   ChangePasswordValidator changePasswordValidator
 
   Logger log = LoggerFactory.getLogger(this.class)
 
-   @InitBinder('recoveryPasswordCommand')
-	private void initGetEmailBinder(WebDataBinder binder) {
-		binder.addValidators(recoveryValidator)
-    }
-    
-   @InitBinder('changePassword')
-	private void initChangeBinder(WebDataBinder binder) {
-		binder.addValidators(changePasswordValidator)
-	}
-    
+  @InitBinder('recoveryPasswordCommand')
+  private void initGetEmailBinder(WebDataBinder binder) {
+    binder.addValidators(recoveryValidator)
+  }
 
-   @RequestMapping(method = GET, value = "/activate/{token}")
-	String create(@PathVariable String token){
-  	log.info "Calling activate token"
+  @InitBinder('changePassword')
+  private void initChangeBinder(WebDataBinder binder) {
+    binder.addValidators(changePasswordValidator)
+  }
+
+  @RequestMapping(method = GET, value = "/activate/{token}")
+  String create(@PathVariable String token){
+    log.info "Calling activate token"
     recoveryService.confirmAccountForToken(token)
     'login/login'
-	}
+  }
 
   @RequestMapping(method = GET, value = "/password")
-	ModelAndView password(){
-  	log.info "Asking for change password"
+  ModelAndView password(){
+    log.info "Asking for change password"
     ModelAndView modelAndView = new ModelAndView('recovery/recoveryPassword')
     modelAndView.addObject('recoveryPasswordCommand',  new RecoveryPasswordCommand())
     modelAndView
-	}
+  }
 
-   @RequestMapping(method = POST, value = "/email")
-	ModelAndView getEmailForRecovery(@Valid RecoveryPasswordCommand command, BindingResult bindingResult){
+  @RequestMapping(method = POST, value = "/email")
+  ModelAndView getEmailForRecovery(@Valid RecoveryPasswordCommand command, BindingResult bindingResult){
 
-	if(bindingResult.hasErrors()){
+    if(bindingResult.hasErrors()){
       return new ModelAndView('recovery/password')
     }
     ModelAndView modelAndView = new ModelAndView('home/home')
     recoveryService.generateRegistrationCodeForEmail(command.email)
     modelAndView
-    }
-    
-   
   }
-    
+
+  @RequestMapping(method = GET, value = "/forgot/{token}")
+  ModelAndView changePassword(@PathVariable String token, HttpServletRequest request){
+    log.info "Calling change password"
+    def modelAndView = new ModelAndView('recovery/changePassword')
+    Boolean valid = recoveryService.validateToken(token)
+    if(!valid){
+      modelAndView.addObject('message', localeService.getMessage('recovery.token.error', request))
+    }
+    def changePasswordCommand = new ChangePasswordCommand(token:token)
+    modelAndView.addObject('changePasswordCommand', changePasswordCommand)
+    modelAndView
+  }
+
 }
+
