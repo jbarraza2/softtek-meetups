@@ -9,13 +9,12 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 
 @Entity
-class State implements Serializable{
+class Profile {
 
   @Id
   @GeneratedValue(strategy=AUTO)
   Long id
 
-  @Column(unique = true, nullable = false)
-  String name
-
+  @Column(nullable = true)
+  String biography
 }
