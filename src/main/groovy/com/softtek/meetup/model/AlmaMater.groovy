@@ -9,19 +9,13 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 
 @Entity
-class Profile implements Serializable {
+class AlmaMater implements Serializable {
 
   @Id
   @GeneratedValue(strategy=AUTO)
   Long id
 
-  @Column(nullable = true)
-  String biography
-
-  @Column(nullable = true)
-  String degree
-
-
-
+  @Column(unique = true, nullable = false)
+  String name
 
 }
