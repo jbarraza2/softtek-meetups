@@ -9,7 +9,7 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 
 @Entity
-class State implements Serializable {
+class City implements Serializable {
 
   @Id
   @GeneratedValue(strategy=AUTO)
@@ -19,3 +19,4 @@ class State implements Serializable {
   String name
 
 }
+
