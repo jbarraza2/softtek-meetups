@@ -24,5 +24,4 @@ class Profile implements Serializable {
   @Column(nullable = true)
   Date birthDate
 
-
 }
