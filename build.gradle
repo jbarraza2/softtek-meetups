@@ -24,20 +24,18 @@ bower {
 	}
 }
 
+apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-jar {
-	baseName = 'softtek-meetups'
-	version = '0.0.1-SNAPSHOT'
-}
+group = 'com.softtek.meetup'
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
 }
-
 
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-web'
