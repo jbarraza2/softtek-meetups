@@ -20,7 +20,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 class UserController {
 
   @Autowired
@@ -43,7 +43,7 @@ class UserController {
     modelAndView
   }
 
-  @RequestMapping(method = POST, value = "/save")
+  @RequestMapping(method = POST)
   ModelAndView save(@Valid UserCommand command, BindingResult bindingResult) {
   log.info "Saving user: ${command?.username}"
 
