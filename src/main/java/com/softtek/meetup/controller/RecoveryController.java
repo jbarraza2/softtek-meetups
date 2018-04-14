@@ -16,7 +16,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
-import javax.servlet.http.HttpServletRequest;
 
 import com.softtek.meetup.command.RecoveryPasswordCommand;
 import com.softtek.meetup.command.ChangePasswordCommand;
@@ -74,23 +73,23 @@ public class RecoveryController {
     if(bindingResult.hasErrors()){
       return "recovery/password";
     }
-    recoveryService.generateRegistrationCodeForEmail(command.email);
+    recoveryService.generateRegistrationCodeForEmail(command.getEmail());
     return "home/home";
   }
 
   @RequestMapping(method = GET, value = "/forgot/{token}")
-  public String changePassword(@PathVariable String token, HttpServletRequest request, Model model){
+  public String changePassword(@PathVariable String token, Model model){
     log.info("Calling change password");
     Boolean valid = recoveryService.validateToken(token);
     if(!valid){
-      model.addAttriute("message", localeService.getMessage("recovery.token.error"));
+      model.addAttribute("message", "recovery.token.error");
     }
-    Command changePasswordCommand = new ChangePasswordCommand();
+    ChangePasswordCommand changePasswordCommand = new ChangePasswordCommand();
     changePasswordCommand.setToken(token);
-    modelAndView.addObject("changePasswordCommand", changePasswordCommand);
+    model.addAttribute("changePasswordCommand", changePasswordCommand);
     return "recovery/changePassword";
   }
-  
+
   @RequestMapping(method = POST, value = "/change")
   public String changePassword(@Valid ChangePasswordCommand command, BindingResult bindingResult, Model model){
   	log.info("Calling save and changing password");
