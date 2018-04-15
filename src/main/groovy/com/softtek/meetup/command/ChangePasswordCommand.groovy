@@ -18,4 +18,4 @@ class ChangePasswordCommand implements Command {
   @Size(min=8, max=50)
   String passwordConfirmation
 
-  }
+}
