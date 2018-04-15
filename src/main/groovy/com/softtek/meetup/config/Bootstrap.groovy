@@ -12,6 +12,9 @@ import com.softtek.meetup.model.Role
 import com.softtek.meetup.enums.CurrentEnvironment
 import com.softtek.meetup.repository.UserRepository
 
+import reactor.core.publisher.Mono;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Component
 class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -34,6 +37,7 @@ class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   }
 
   void createUserWithRole(String username, String password, String email, Role authority) {
+    //TODO: How we can get user from database in a reactive way
     if(!userRepository.findByUsername(username)){
       User user = new User(
         username:username,
