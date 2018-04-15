@@ -6,7 +6,5 @@ import com.softtek.meetup.model.RegistrationCode;
 import reactor.core.publisher.Mono;
 
 public interface RegistrationCodeRepository extends ReactiveMongoRepository<RegistrationCode, Long> {
-
   Mono<RegistrationCode> findByToken(String token);
-
 }
