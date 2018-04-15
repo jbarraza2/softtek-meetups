@@ -9,7 +9,7 @@ import lombok.ToString;
 @Data
 @Document
 @ToString
-public class AlmaMater {
+public class City {
 
   @Id
   private String uuid;
