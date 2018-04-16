@@ -11,10 +11,10 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import com.softtek.meetup.repository.UserRepository;
 
 @EnableWebFluxSecurity
-class SecurityConfig {
+public class SecurityConfig {
 
   @Autowired
-  UserRepository userRepository;
+  private UserRepository userRepository;
 
   @Bean
   SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) throws Exception {
@@ -23,10 +23,7 @@ class SecurityConfig {
       .pathMatchers(HttpMethod.GET, "/", "/assets/**","/home/**","/user/**","/recovery/**").permitAll()
       .anyExchange().authenticated()
       .and()
-      .httpBasic()
-      .and()
-      .formLogin()
-      .loginPage("/login");
+      .httpBasic();      
     return http.build();      
   }
 
