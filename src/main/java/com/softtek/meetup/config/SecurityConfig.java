@@ -17,13 +17,15 @@ public class SecurityConfig {
   private UserRepository userRepository;
 
   @Bean
-  SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) throws Exception {
+  SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) {
     http
       .authorizeExchange()
-      .pathMatchers(HttpMethod.GET, "/", "/assets/**","/home/**","/user/**","/recovery/**").permitAll()
-      .anyExchange().authenticated()
+      .anyExchange()
+      .authenticated()
       .and()
-      .httpBasic();      
+      .httpBasic()
+      .and()
+      .formLogin();
     return http.build();      
   }
 
