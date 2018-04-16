@@ -45,7 +45,7 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
     User user = new User(
       uuid,
       username,
-      new passwordEncoder().encode(password)
+      passwordEncoder.encode(password)
     );
 
     userRepository.findByUsername(username)

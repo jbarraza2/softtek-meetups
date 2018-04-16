@@ -10,7 +10,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 public class SofttekMeetupApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SofttekMeetupApplication, args);
+		SpringApplication.run(SofttekMeetupApplication.class, args);
   }
   
   @Bean
