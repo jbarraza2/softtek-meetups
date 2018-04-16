@@ -23,9 +23,9 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   private final static String uuid = "39ed0e7c-590b-48f3-9d72-19e3c667a827";
 
   @Autowired
-  Environment environment;
+  private Environment environment;
   @Autowired
-  UserRepository userRepository;
+  private UserRepository userRepository;
 
   @Override
   public void onApplicationEvent(final ApplicationReadyEvent event) {
