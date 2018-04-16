@@ -2,7 +2,7 @@ package com.softtek.meetup.config;
 
 import java.util.UUID;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -23,9 +23,11 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   private final static String uuid = "39ed0e7c-590b-48f3-9d72-19e3c667a827";
 
   @Autowired
-  Environment environment;
+  private Environment environment;
   @Autowired
-  UserRepository userRepository;
+  private UserRepository userRepository;
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   @Override
   public void onApplicationEvent(final ApplicationReadyEvent event) {
@@ -43,7 +45,7 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
     User user = new User(
       uuid,
       username,
-      new BCryptPasswordEncoder().encode(password)
+      new passwordEncoder().encode(password)
     );
 
     userRepository.findByUsername(username)
