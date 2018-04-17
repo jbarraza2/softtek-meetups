@@ -20,13 +20,17 @@ public class SecurityConfig {
   SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) {
     http
       .authorizeExchange()
+      .pathMatchers("/", "/assets/**","/home/**","/recovery/**","/login/**").permitAll()
       .anyExchange()
       .authenticated()
       .and()
       .httpBasic()
       .and()
-      .formLogin();
-    return http.build();      
+      .formLogin()
+      .loginPage("/login")
+      .and()
+      .csrf().disable();
+    return http.build();
   }
 
   @Bean

@@ -16,7 +16,9 @@ public class HomeController {
   @RequestMapping("/")
   public String index(Principal principal){
     log.info("Calling home");
-    String username = principal.getName();
+    String username = "anonymous";
+    if(principal != null)
+      username = principal.getName();
     log.info("Authenticated user is: " + username);
     return "home/home";
   }
