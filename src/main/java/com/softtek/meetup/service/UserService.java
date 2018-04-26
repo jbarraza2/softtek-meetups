@@ -7,6 +7,5 @@ public interface UserService {
 
   User getByUsername(String username);
   User getByEmail(String email);
-  User save(Command command);
 
 }

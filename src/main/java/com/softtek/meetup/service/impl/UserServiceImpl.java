@@ -20,19 +20,13 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private RecoveryService recoveryService;
 
-  public User getByUsername(String username){
-    return userRepository.findByUsername(username);
+  public Mono<User> getByUsername(String username){
+    return userRepository.findByUsername(username);      
   }
 
-  public User getByEmail(String email){
+  public Mono<User> getByEmail(String email){
     return userRepository.findByEmail(email);
   }
 
-  public User save(Command command){
-    User user = userBinder.bindUser(command);
-    userRepository.save(user);
-    recoveryService.sendConfirmationAccountToken(command.email);
-    return user;
-  }
 
 }
