@@ -1,6 +1,5 @@
 package com.softtek.meetup.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import org.springframework.ui.Model;
@@ -20,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller
-@RequestMapping("/users")
 public class UserController {
 
   @Autowired
@@ -35,10 +33,10 @@ public class UserController {
     binder.addValidators(userValidator);
   }
 
-  @RequestMapping(method = GET, value = "/create")  
+  @RequestMapping(value = "/users/create")  
   public String create(Model model){
     model.addAttribute("userCommand", new UserCommand());
-    return "user/create";
+    return "users/create";
   }
 
   @RequestMapping(method = POST)
