@@ -108,7 +108,7 @@
     <ul class="nav nav-tabs text-center" role="tablist">
     </ul>
     <br/>
-    <form id="register" th:action="@{/user/save}" th:object="${userCommand}" method="post">
+    <form id="register" th:action="@{/users}" th:object="${userCommand}" method="post">
      <div class="form-group">
        <label th:for="firstname" th:text="#{user.firstname}"/>
        <input type="text" name='firstname' class="form-control" placeholder="Enter name(s)" id='name' th:field="*{firstname}"/>
