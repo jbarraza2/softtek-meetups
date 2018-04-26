@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import javax.validation.Valid;
 
+import com.softtek.meetup.model.User;
+import com.softtek.meetup.binder.UserBinder;
 import com.softtek.meetup.command.UserCommand;
 import com.softtek.meetup.validator.UserValidator;
 import com.softtek.meetup.service.UserService;
@@ -27,6 +29,8 @@ public class UserController {
   private UserValidator userValidator;
   @Autowired
   private UserService userService;
+  @Autowired
+  private UserBinder userBinder;
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -49,7 +53,8 @@ public class UserController {
 	    return "users/create";
     }
 
-    userService.save(command);
+    User user = userBinder.bindUser(command);
+    userService.save(user);
     return "redirect:/";
   }
 
