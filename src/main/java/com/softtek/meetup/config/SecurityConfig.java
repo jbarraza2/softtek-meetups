@@ -20,7 +20,7 @@ public class SecurityConfig {
   SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) {
     http
       .authorizeExchange()
-      .pathMatchers("/", "/assets/**","/home/**","/recovery/**","/login/**").permitAll()
+      .pathMatchers("/", "/assets/**","/home/**","/recovery/**","/login/**","/users/**").permitAll()
       .anyExchange()
       .authenticated()
       .and()

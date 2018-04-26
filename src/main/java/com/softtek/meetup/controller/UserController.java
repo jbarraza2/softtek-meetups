@@ -38,7 +38,7 @@ public class UserController {
   @RequestMapping(method = GET, value = "/create")  
   public String create(Model model){
     model.addAttribute("userCommand", new UserCommand());
-    return "user/create";
+    return "users/create";
   }
 
   @RequestMapping(method = POST)
@@ -46,7 +46,7 @@ public class UserController {
     log.info("Saving user:" + command.getUsername());
 
     if (bindingResult.hasErrors()) {
-	    return "user/create";
+	    return "users/create";
     }
 
     userService.save(command);
