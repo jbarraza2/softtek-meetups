@@ -17,6 +17,7 @@ import com.softtek.meetup.binder.UserBinder;
 import com.softtek.meetup.command.UserCommand;
 import com.softtek.meetup.validator.UserValidator;
 import com.softtek.meetup.service.UserService;
+import com.softtek.meetup.repository.UserRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,8 @@ public class UserController {
   private UserService userService;
   @Autowired
   private UserBinder userBinder;
+  @Autowired
+  private UserRepository userRepository;
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -46,15 +49,17 @@ public class UserController {
   }
 
   @RequestMapping(method = POST)
-  public String save(@Valid UserCommand command, BindingResult bindingResult) {
+  public String save(UserCommand command) {
     log.info("Saving user:" + command.getUsername());
-
-    if (bindingResult.hasErrors()) {
-	    return "users/create";
-    }
-
     User user = userBinder.bindUser(command);
-    userService.save(user);
+
+    userRepository.findByUsername(command.getUsername())
+      .subscribe(
+        databaseUser -> System.out.println("user: " + databaseUser),
+        error -> error.printStackTrace(),
+        () -> userRepository.save(user).subscribe()
+      );
+
     return "redirect:/";
   }
 

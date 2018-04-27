@@ -23,6 +23,9 @@ public class User implements UserDetails {
   private String uuid;
   private String username;
   private String password;
+  private String email;
+  private String firstname;
+  private String lastname;
 
   private boolean active = true;
   private Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
@@ -68,6 +71,30 @@ public class User implements UserDetails {
   @Override
   public String getUsername() {
     return this.username;
+  }
+
+  public String getEmail(){
+    return this.email;
+  }
+
+  public void setEmail(String email){
+    this.email = email;
+  }
+
+  public String getFirstname(){
+    return this.firstname;
+  }
+
+  public void setFirstname(String firstname){
+    this.firstname = firstname;
+  }
+
+  public String getLastname(){
+    return this.lastname;
+  }
+
+  public void setLastname(String lastname){
+    this.lastname = lastname;
   }
 
 }

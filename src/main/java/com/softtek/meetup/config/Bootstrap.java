@@ -38,10 +38,10 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   }
 
   private void createDefaultUsers(){
-    createUserWithRole("softtekian", "12345678", "jose.cruzm@softtek.com", Role.USER);
+    createUserWithRole("softtekian", "12345678", "jose.cruzm@softtek.com");
   }
 
-  private void createUserWithRole(String username, String password, String email, Role authority) {
+  private void createUserWithRole(String username, String password, String email) {
     User user = new User(
       uuid,
       username,
