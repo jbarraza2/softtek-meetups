@@ -1,23 +1,28 @@
 package com.softtek.meetup.unit;
 
+import static org.junit.Assert.assertTrue;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.softtek.meetup.repository.UserRepository;
+import com.softtek.meetup.service.UserService;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class UserServiceTest {
 
-  @Autowired
-  private UserRepository userRepository;
+  @Autowired 
+  private UserService userService;
 
   @Test
-  public void shouldGetDefaultUser(){
-    userRepository.findByUsername("josdem").subscribe(System.out::println);
-    System.out.print("Hello World!");
+  public void shouldGetDefaultUser(){    
+    userService.getByUsername("josdem").subscribe(System.out::println);
+    assertTrue(false);
   }
   
 
