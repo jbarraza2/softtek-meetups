@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
+import org.springframework.security.core.userdetails.UserDetails;
 import javax.validation.Valid;
 
 import com.softtek.meetup.model.User;
@@ -55,7 +56,7 @@ public class UserController {
 
     userRepository.findByUsername(command.getUsername())
       .subscribe(
-        databaseUser -> System.out.println("user: " + databaseUser),
+        savedUser -> System.out.println("Saved user: " + savedUser),
         error -> error.printStackTrace(),
         () -> userRepository.save(user).subscribe()
       );

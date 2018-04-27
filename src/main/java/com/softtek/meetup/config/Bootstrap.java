@@ -20,8 +20,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Component
 public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
 
-  private final static String uuid = "39ed0e7c-590b-48f3-9d72-19e3c667a827";
-
   @Autowired
   private Environment environment;
   @Autowired
@@ -38,12 +36,11 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   }
 
   private void createDefaultUsers(){
-    createUserWithRole("softtekian", "12345678", "jose.cruzm@softtek.com");
+    createUserWithRole("softtekian", "12345678");
   }
 
-  private void createUserWithRole(String username, String password, String email) {
+  private void createUserWithRole(String username, String password) {
     User user = new User(
-      uuid,
       username,
       passwordEncoder.encode(password)
     );
