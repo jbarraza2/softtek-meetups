@@ -19,17 +19,18 @@ import lombok.ToString;
 @ToString
 public class User implements UserDetails {
 
-  @Id
-  private String uuid;
+  @Id  
   private String username;
   private String password;
+  private String email;
+  private String firstname;
+  private String lastname;
 
   private boolean active = true;
   private Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
 
   @Builder
-  public User(String uuid, String username, String password){
-    this.uuid = uuid;
+  public User(String username, String password){    
     this.username = username;
     this.password = password;
     roles.add(new SimpleGrantedAuthority("ROLE_USER"));
@@ -68,6 +69,30 @@ public class User implements UserDetails {
   @Override
   public String getUsername() {
     return this.username;
+  }
+
+  public String getEmail(){
+    return this.email;
+  }
+
+  public void setEmail(String email){
+    this.email = email;
+  }
+
+  public String getFirstname(){
+    return this.firstname;
+  }
+
+  public void setFirstname(String firstname){
+    this.firstname = firstname;
+  }
+
+  public String getLastname(){
+    return this.lastname;
+  }
+
+  public void setLastname(String lastname){
+    this.lastname = lastname;
   }
 
 }

@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
+import org.springframework.security.core.userdetails.UserDetails;
 import javax.validation.Valid;
 
+import com.softtek.meetup.model.User;
+import com.softtek.meetup.binder.UserBinder;
 import com.softtek.meetup.command.UserCommand;
 import com.softtek.meetup.validator.UserValidator;
 import com.softtek.meetup.service.UserService;
+import com.softtek.meetup.repository.UserRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +29,10 @@ public class UserController {
   private UserValidator userValidator;
   @Autowired
   private UserService userService;
+  @Autowired
+  private UserBinder userBinder;
+  @Autowired
+  private UserRepository userRepository;
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -40,14 +48,17 @@ public class UserController {
   }
 
   @RequestMapping(method = POST)
-  public String save(@Valid UserCommand command, BindingResult bindingResult) {
+  public String save(UserCommand command) {
     log.info("Saving user:" + command.getUsername());
+    User user = userBinder.bindUser(command);
 
-    if (bindingResult.hasErrors()) {
-	    return "user/create";
-    }
+    userRepository.findByUsername(command.getUsername())
+      .subscribe(
+        savedUser -> System.out.println("Saved user: " + savedUser),
+        error -> error.printStackTrace(),
+        () -> userRepository.save(user).subscribe()
+      );
 
-    userService.save(command);
     return "redirect:/";
   }
 

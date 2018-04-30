@@ -11,7 +11,7 @@ import lombok.ToString;
 @Data
 @Document
 @ToString
-public class Profile {
+public class About {
 
   @Id
   private String uuid;
