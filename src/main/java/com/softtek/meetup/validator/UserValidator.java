@@ -19,33 +19,19 @@ public class UserValidator implements Validator {
 
   @Override
   public boolean supports(Class<?> clazz) {
-    UserCommand.class.equals(clazz);
+    return UserCommand.class.equals(clazz);
   }
 
   @Override
   public void validate(Object target, Errors errors) {
     UserCommand userCommand = (UserCommand) target;
-    validatePasswords(errors, userCommand);
     validateUsername(errors, userCommand);
-    validateEmail(errors, userCommand);
-  }
-
-  private void validatePasswords(Errors errors, UserCommand command) {
-    if (!command.getPassword().equals(command.getPasswordConfirmation())){
-      errors.rejectValue("password", "user.validation.password.equals");
-    }
   }
 
   private void validateUsername(Errors errors, UserCommand command){
-    if(userService.getByUsername(command.getUsername())){
-      errors.rejectValue("username", "user.validation.duplicated.username");
-    }
-  }
-
-  private void validateEmail(Errors errors, UserCommand command){
-    if(userService.getByEmail(command.geEmail())){
-      errors.rejectValue("email", "user.validation.duplicated.email");
-    }
+    userService.getByUsername(command.getUsername()).subscribe(
+      username -> errors.rejectValue("username", "user.validation.duplicated.username")
+    );
   }
 
 }

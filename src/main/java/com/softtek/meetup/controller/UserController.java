@@ -43,7 +43,7 @@ public class UserController {
     binder.addValidators(userValidator);
   }
 
-  @RequestMapping(value = "/users/create")  
+  @RequestMapping(value = "/create")  
   public String create(Model model){
     model.addAttribute("userCommand", new UserCommand());
     return "users/create";
