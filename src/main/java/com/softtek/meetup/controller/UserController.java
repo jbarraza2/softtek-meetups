@@ -53,12 +53,11 @@ public class UserController {
   public String save(@Valid UserCommand command, BindingResult bindingResult) {
     log.info("Saving user:" + command.getUsername());
 
-    if(bindingResult.hasErrors()){
-      System.out.println(bindingResult.getAllErrors());
+    if (bindingResult.hasErrors()) {
+      return "users/create";
     }
       
     User user = userBinder.bindUser(command);
-
     userRepository.findByUsername(command.getUsername())
       .subscribe(
         savedUser -> log.info("Saved user: " + savedUser),
