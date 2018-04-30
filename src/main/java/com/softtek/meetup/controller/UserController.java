@@ -50,8 +50,13 @@ public class UserController {
   }
 
   @RequestMapping(method = POST)
-  public String save(UserCommand command) {
+  public String save(@Valid UserCommand command, BindingResult bindingResult) {
     log.info("Saving user:" + command.getUsername());
+
+    if(bindingResult.hasErrors()){
+      System.out.println(bindingResult.getAllErrors());
+    }
+      
     User user = userBinder.bindUser(command);
 
     userRepository.findByUsername(command.getUsername())
