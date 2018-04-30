@@ -19,6 +19,7 @@ import com.softtek.meetup.command.UserCommand;
 import com.softtek.meetup.validator.UserValidator;
 import com.softtek.meetup.service.UserService;
 import com.softtek.meetup.repository.UserRepository;
+import com.softtek.meetup.exception.BusinessException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,8 +57,8 @@ public class UserController {
 
     userRepository.findByUsername(command.getUsername())
       .subscribe(
-        savedUser -> System.out.println("Saved user: " + savedUser),
-        error -> error.printStackTrace(),
+        savedUser -> log.info("Saved user: " + savedUser),
+        error -> { throw new BusinessException(error); },
         () -> userRepository.save(user).subscribe()
       );
 
