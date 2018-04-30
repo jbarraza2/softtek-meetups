@@ -31,19 +31,19 @@ public class UserValidator implements Validator {
   }
 
   private void validatePasswords(Errors errors, UserCommand command) {
-    if (!command.password.equals(command.passwordConfirmation)){
+    if (!command.getPassword().equals(command.getPasswordConfirmation())){
       errors.rejectValue("password", "user.validation.password.equals");
     }
   }
 
   private void validateUsername(Errors errors, UserCommand command){
-    if(userService.getByUsername(command.username)){
+    if(userService.getByUsername(command.getUsername())){
       errors.rejectValue("username", "user.validation.duplicated.username");
     }
   }
 
   private void validateEmail(Errors errors, UserCommand command){
-    if(userService.getByEmail(command.email)){
+    if(userService.getByEmail(command.geEmail())){
       errors.rejectValue("email", "user.validation.duplicated.email");
     }
   }
