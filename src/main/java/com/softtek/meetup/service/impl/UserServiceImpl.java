@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     return userRepository.findByUsername(username);      
   }
 
-  public Mono<UserDetails> getByEmail(String email){
+  public Mono<User> getByEmail(String email){
     return userRepository.findByEmail(email);
   }
 

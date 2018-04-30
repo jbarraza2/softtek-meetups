@@ -9,7 +9,7 @@ import  com.softtek.meetup.command.Command;
 public interface UserService {
 
   Mono<UserDetails> getByUsername(String username);
-  Mono<UserDetails> getByEmail(String email);
+  Mono<User> getByEmail(String email);
   void save(User user);
 
 }
