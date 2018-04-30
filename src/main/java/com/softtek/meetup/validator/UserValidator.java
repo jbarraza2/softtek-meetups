@@ -25,7 +25,14 @@ public class UserValidator implements Validator {
   @Override
   public void validate(Object target, Errors errors) {
     UserCommand userCommand = (UserCommand) target;
+    validatePasswords(errors, userCommand);
     validateUsername(errors, userCommand);
+  }
+
+  private void validatePasswords(Errors errors, UserCommand command){
+    if (!command.getPassword().equals(command.getPasswordConfirmation())){
+      errors.rejectValue("password", "user.validation.password.equals");
+    }
   }
 
   private void validateUsername(Errors errors, UserCommand command){
