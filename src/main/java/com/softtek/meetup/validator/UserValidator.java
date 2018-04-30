@@ -27,6 +27,7 @@ public class UserValidator implements Validator {
     UserCommand userCommand = (UserCommand) target;
     validatePasswords(errors, userCommand);
     validateUsername(errors, userCommand);
+    validateEmail(errors, userCommand);
   }
 
   private void validatePasswords(Errors errors, UserCommand command){
@@ -37,7 +38,13 @@ public class UserValidator implements Validator {
 
   private void validateUsername(Errors errors, UserCommand command){
     userService.getByUsername(command.getUsername()).subscribe(
-      username -> errors.rejectValue("username", "user.validation.duplicated.username")
+      user -> errors.rejectValue("username", "user.validation.duplicated.username")
+    );
+  }
+
+  private void validateEmail(Errors errors, UserCommand command){
+    userService.getByEmail(command.getEmail()).subscribe(
+      user -> errors.rejectValue("email", "user.validation.duplicated.email")
     );
   }
 

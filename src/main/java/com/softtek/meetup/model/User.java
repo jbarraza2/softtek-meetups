@@ -30,9 +30,10 @@ public class User implements UserDetails {
   private Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
 
   @Builder
-  public User(String username, String password){    
+  public User(String username, String password, String email){    
     this.username = username;
     this.password = password;
+    this.email = email;
     roles.add(new SimpleGrantedAuthority("ROLE_USER"));
   }
 
@@ -73,10 +74,6 @@ public class User implements UserDetails {
 
   public String getEmail(){
     return this.email;
-  }
-
-  public void setEmail(String email){
-    this.email = email;
   }
 
   public String getFirstname(){

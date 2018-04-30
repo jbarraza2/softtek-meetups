@@ -36,13 +36,14 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   }
 
   private void createDefaultUsers(){
-    createUserWithRole("softtekian", "12345678");
+    createUserWithRole("softtekian", "12345678", "jose.cruzm@softtek.com");
   }
 
-  private void createUserWithRole(String username, String password) {
+  private void createUserWithRole(String username, String password, String email) {
     User user = new User(
       username,
-      passwordEncoder.encode(password)
+      passwordEncoder.encode(password),
+      email
     );
 
     userRepository.findByUsername(username)

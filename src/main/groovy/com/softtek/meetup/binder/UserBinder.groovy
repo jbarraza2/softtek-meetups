@@ -17,10 +17,9 @@ class UserBinder {
   PasswordEncoder passwordEncoder
 
   User bindUser(Command command){
-    User user = new User(command.username, passwordEncoder.encode(command.password))
+    User user = new User(command.username, passwordEncoder.encode(command.password), command.email)
     user.firstname = command.firstname
     user.lastname = command.lastname
-    user.email = command.email
     user
   }
 
